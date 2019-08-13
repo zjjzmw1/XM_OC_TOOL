@@ -8,7 +8,59 @@
 
 #import "XMTool.h"
 
+@interface XMTool()
+
+/// 准备消失页面
+@property (nonatomic, assign) BOOL  isReadyDissmiss;
+/// XMTool单例 - 个别方法用的属性了，所有添加单例
++ (XMTool *)shareManager;
+
+@end
+
 @implementation XMTool
+
++ (XMTool *)shareManager {
+    static XMTool *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance = [[XMTool alloc] init];
+    });
+    return instance;
+}
+
+/// 一直loading动画的HUD -- 背景可以点击
++ (void)showHUD {
+    [XMTool shareManager].isReadyDissmiss = NO;
+    [SVProgressHUD show];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeNone];
+}
+/// 一直loading动画的HUD -- 背景不可点击
++ (void)showHUDInWindow:(NSString *)loadingStr {
+    [XMTool shareManager].isReadyDissmiss = NO;
+    [SVProgressHUD showWithStatus:loadingStr];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+}
+/// 弹出hud提示。 1.5s后自动消失
++ (void)showTipHUD:(NSString *)tipStr {
+    [XMTool shareManager].isReadyDissmiss = YES;
+    [SVProgressHUD dismissWithDelay:0];
+    [SVProgressHUD setErrorImage:[UIImage imageNamed:@""]];
+    if ([Tool getCurrentNetworkInt] == 0) { // 未联网
+        [SVProgressHUD showErrorWithStatus:kNetworkErrorTipStr_XM];
+    } else if (![NSString isEmptyString:tipStr]) {
+        [SVProgressHUD showErrorWithStatus:tipStr];
+    }
+    [SVProgressHUD dismissWithDelay:1.5];
+}
+/// 隐藏HUD 0 就是立刻消失，  秒数
++ (void)dismissHUD:(NSTimeInterval)time {
+    if ([XMTool shareManager].isReadyDissmiss == NO) {
+        [XMTool shareManager].isReadyDissmiss = YES;
+        [SVProgressHUD dismissWithDelay:time];
+    } else {
+        /// isReadyDissmiss : YES 证明调用过延迟消失的方法了。,所以这里就不执行消失了。
+    }
+}
 
 #pragma mark - 获取当前屏幕显示的viewcontroller
 + (nullable UIViewController *)getCurrentVC {

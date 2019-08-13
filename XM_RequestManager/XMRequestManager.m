@@ -40,7 +40,7 @@ typedef enum : NSUInteger {
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     securityPolicy.validatesDomainName = YES;
     self.myManager.securityPolicy = securityPolicy;
-
+    
     /// 存储所有不需要弹出错误提示的请求
     [self.notShowErrorTipUrlArr addObject:kHasNewCourse]; // 小红点不弹
     [self.notShowErrorTipUrlArr addObject:EKHomeCustomizePath]; // 定制
@@ -124,15 +124,14 @@ typedef enum : NSUInteger {
     [mutableDict setObject:@(_t) forKey:@"_t"];
     [mutableDict setObject:_st forKey:@"_st"];
     [mutableDict setObject:_si forKey:@"_si"];
-
+    
     //  ----------------------------------get 请求 ----------------------------------------
     if (methodType == GetMethod_XM) { // get 请求
         [[XMRequestManager shareManager].myManager GET:lastUrlStr parameters:mutableDict progress:^(NSProgress * _Nonnull downloadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             /// 取消所有HUD
-            [MBProgressHUD hideAllHUDsForView:nil animated:YES];
-            [Tool dismissHUD:0];
+            [XMTool dismissHUD:0];
             XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
             if ([XMRequestManager getRequestStatus:responseObject] == -2) { // 需要重新登录
                 [UserManager logoutAction];
@@ -146,7 +145,7 @@ typedef enum : NSUInteger {
                         if ([tipS containsString:@"没有评论"] || [tipS containsString:@"不存在相关数据"] || [tipS containsString:@"没有数据"] || [tipS containsString:@"Error"]) {
                             
                         } else {
-                            [Tool showTipHUD:[XMRequestManager getRequestMsg:responseObject]];
+                            [XMTool showTipHUD:[XMRequestManager getRequestMsg:responseObject]];
                         }
                     }
                 });
@@ -156,11 +155,10 @@ typedef enum : NSUInteger {
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             /// 取消所有HUD， 弹出失败HUD
-            [MBProgressHUD hideAllHUDsForView:nil animated:YES];
             if (![[XMRequestManager shareManager].notShowErrorTipUrlArr containsObject:urlStr]) {
-                [Tool showTipHUD:kRequestFailureTipStr_XM];
+                [XMTool showTipHUD:kRequestFailureTipStr_XM];
             } else {
-                [Tool dismissHUD:0];
+                [XMTool dismissHUD:0];
             }
             NSLog(@" [%@] 请求失败: error==%@\n",urlStr, error.localizedDescription);
             if (failure) {
@@ -168,14 +166,13 @@ typedef enum : NSUInteger {
             }
         }];
     }
-     //  ----------------------------------post 请求 ----------------------------------------
+    //  ----------------------------------post 请求 ----------------------------------------
     if (methodType == PostMethod_XM) {
         [[XMRequestManager shareManager].myManager POST:lastUrlStr parameters:mutableDict progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             /// 取消所有HUD
-            [MBProgressHUD hideAllHUDsForView:nil animated:YES];
-            [Tool dismissHUD:0];
+            [XMTool dismissHUD:0];
             XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
             if ([XMRequestManager getRequestStatus:responseObject] == -2) { // 需要重新登录
                 [UserManager logoutAction];
@@ -184,7 +181,7 @@ typedef enum : NSUInteger {
             if (([XMRequestManager getRequestStatus:responseObject] != 0) && ([XMRequestManager getRequestStatus:responseObject] != -2) && ([XMRequestManager getRequestStatus:responseObject] != 10000)) { // 提示错误信息
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     if (![[XMRequestManager shareManager].notShowErrorTipUrlArr containsObject:urlStr]) {
-                        [Tool showTipHUD:[XMRequestManager getRequestMsg:responseObject]];
+                        [XMTool showTipHUD:[XMRequestManager getRequestMsg:responseObject]];
                     }
                 });
             }
@@ -193,11 +190,10 @@ typedef enum : NSUInteger {
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             /// 取消所有HUD， 弹出失败HUD
-            [MBProgressHUD hideAllHUDsForView:nil animated:YES];
             if (![[XMRequestManager shareManager].notShowErrorTipUrlArr containsObject:urlStr]) {
-                [Tool showTipHUD:kRequestFailureTipStr_XM];
+                [XMTool showTipHUD:kRequestFailureTipStr_XM];
             } else {
-                [Tool dismissHUD:0];
+                [XMTool dismissHUD:0];
             }
             NSLog(@" [%@] 请求失败: error==%@\n",urlStr, error.localizedDescription);
             if (failure) {

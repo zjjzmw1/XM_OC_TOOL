@@ -12,6 +12,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XMTool : NSObject
+// --------------------------HUD常用方法封装，方便随时更换HUD第三方 BEGIN-------------------------
+/// 一直loading动画的HUD -- 背景可以点击
++ (void)showHUD;
+/// 一直loading动画的HUD -- 背景不可点击
++ (void)showHUDInWindow:(NSString *)loadingStr;
+/// 弹出hud提示。 1.5s后自动消失
++ (void)showTipHUD:(NSString *)tipStr;
+/// 隐藏HUD 0 就是立刻消失，  秒数
++ (void)dismissHUD:(NSTimeInterval)time;
+// --------------------------HUD常用方法封装，方便随时更换HUD第三方 END-------------------------
 
 /// 获取当前屏幕显示的viewcontroller
 + (nullable UIViewController *)getCurrentVC;
