@@ -23,8 +23,11 @@
 #define XMLog(tmt, ...)
 #endif
 
-/// 当前版本号例如：1.2.0 - 字符串类型
-#define kCurrentVersionStr_XMOC [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+/// 当前版本号 - Version 例如：1.2.0 - 字符串类型
+#define kCurrentVersionStr_XM       [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]
+/// 当前构建版本 - Build 例如：12 - 字符串类型
+#define kCurrentBuidVersionStr_XM   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+
 
 /// 语言判断：-------- 语言是否是中文 BOOL ---------------
 #define kLanguage_Is_Chinese_XM          ([([[NSLocale preferredLanguages] objectAtIndex:0]) == nil ? @"" : ([[NSLocale preferredLanguages] objectAtIndex:0]) hasPrefix:@"zh"])

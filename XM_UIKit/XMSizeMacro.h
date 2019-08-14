@@ -25,6 +25,9 @@
 #define kTabBarH_XM   (kIsIPhoneXSize_XM ? 83.f : (kIsIpad_XM ? 56.f : 49.f))
 #define kView_bottom_h_XM  (kIsIPhoneXSize_XM ? 34.0 : 0)
 
+/// 当前系统的版本 例如： 9.0/10.0等 float 类型
+#define kCurrent_system_version_float_XM    [[[UIDevice currentDevice] systemVersion] floatValue]
+
 /// 是否是iPhoneX的尺寸大小
 #define kIsIPhoneXSize_XM ([UIScreen mainScreen].bounds.size.height == 812.0f || [UIScreen mainScreen].bounds.size.height == 896.0f)
 
