@@ -15,10 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 通用的-跳转某个页面的push
 + (void)pushVC:(UIViewController *)vc;
-
 /// 通用的-返回上一页
 + (void)popToRootVC:(BOOL)isToRoot;
-
+/// 返回到某一个页面，找不到就返回到上一个页面
++ (void)popToCustomVC:(NSString *)vcNameString;
 /// 跳转到某一个网页 urlStr ：url地址，例如：http://www.baidu.com
 + (void)pushToWebVCUrlStr:(NSString *)urlStr titleStr:(NSString *)titleStr;
 

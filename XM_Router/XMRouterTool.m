@@ -31,6 +31,18 @@
     }
 }
 
+/// 返回到某一个页面，找不到就返回到上一个页面
++ (void)popToCustomVC:(NSString *)vcNameString {
+    for (int i = 0; i < [XMRouterTool getCurrentVC].navigationController.viewControllers.count; i++) {
+        if ([[XMRouterTool getCurrentVC].navigationController.viewControllers[i]
+             isKindOfClass:NSClassFromString(vcNameString)]) {
+            [[XMRouterTool getCurrentVC].navigationController popToViewController:[XMRouterTool getCurrentVC].navigationController.viewControllers[i] animated:YES];
+            return;
+        }
+    }
+    [[XMRouterTool getCurrentVC].navigationController popViewControllerAnimated:YES];
+}
+
 /// 跳转到某一个网页 urlStr ：url地址，例如：http://www.baidu.com
 + (void)pushToWebVCUrlStr:(NSString *)urlStr titleStr:(NSString *)titleStr {
     /// 0.5秒内不能重复push，避免多次跳转
