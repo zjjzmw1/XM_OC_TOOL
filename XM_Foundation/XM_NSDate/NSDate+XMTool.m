@@ -23,4 +23,22 @@
     return dateString;
 }
 
+/// 距离当前时间的间隔：1分钟内、几分钟前、几天前、等
+- (NSString *)fromNowTimeIntervalDescription {
+    NSTimeInterval timeInterval = -[self timeIntervalSinceNow];
+    if (timeInterval < 60) {
+        return NSLocalizedString(@"1分钟内", @"");
+    } else if (timeInterval < 3600) {
+        return [NSString stringWithFormat:NSLocalizedString(@"%.0f分钟前", @""), timeInterval / 60];
+    } else if (timeInterval < 86400) {
+        return [NSString stringWithFormat:NSLocalizedString(@"%.0f小时前", @""), timeInterval / 3600];
+    } else if (timeInterval < 2592000) {//30天内
+        return [NSString stringWithFormat:NSLocalizedString(@"%.0f天前", @""), timeInterval / 86400];
+    } else if (timeInterval < 31536000) {//30天至1年内
+        return [self dateStrWithFormat:NSLocalizedString(@"M月d日", @"")];
+    } else {
+        return [NSString stringWithFormat:NSLocalizedString(@"%.f年前", @""), timeInterval / 31536000];
+    }
+}
+
 @end

@@ -40,6 +40,7 @@
 #import "UINavigationController+XMTool.h"
 #import "XMTabBarVC.h"
 #import "XMImageLbl_UpDown.h"
+#import "UITableView+XMTool.h"
 
 // 路由 相关
 #import "XMRouterTool.h"    // OC 简单的跳转路由
