@@ -41,6 +41,7 @@
 #import "XMTabBarVC.h"
 #import "XMImageLbl_UpDown.h"
 #import "UITableView+XMTool.h"
+#import "YYLabel_XM.h"      // 富文本
 
 // 路由 相关
 #import "XMRouterTool.h"    // OC 简单的跳转路由
