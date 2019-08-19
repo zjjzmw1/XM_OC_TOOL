@@ -68,6 +68,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 字符串添加图片 带删除线的    ---  "图标 + 带颜色的文字 带删除线"
 + (NSMutableAttributedString *)getImgAttributeWithImgStrikeLine:(UIImage *)img str:(NSString *)str color:(UIColor *)color font:(UIFont *)font;
 
+/// html转码 - 后台返回富文本html，iOS转换为webView能加载的html字符串 （例如： &lt;转成 <，注意本来就是<p>的标签的话，调用本方法会失去样式效果，变为text文本格式了）
++ (NSString *)getWebViewHtmlStr:(NSString *)htmlStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

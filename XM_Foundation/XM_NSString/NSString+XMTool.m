@@ -473,5 +473,13 @@
 }
 
 
+/// html转码 - 后台返回富文本html，iOS转换为webView能加载的html字符串 （例如： &lt;转成 <，注意本来就是<p>的标签的话，调用本方法会失去样式效果，变为text文本格式了）
++ (NSString *)getWebViewHtmlStr:(NSString *)htmlStr {
+    NSData *lastData = [htmlStr dataUsingEncoding:NSUnicodeStringEncoding];
+    NSDictionary *options = @{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType};
+    NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithData:lastData options:options documentAttributes:nil error:nil];
+    return contentText.string;
+}
+
 
 @end
