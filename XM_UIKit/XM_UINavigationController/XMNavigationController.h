@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 自动隐藏tabbar等方法
 @interface XMNavigationController : UINavigationController
 
 @end

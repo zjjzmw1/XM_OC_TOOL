@@ -38,7 +38,7 @@
 #import "XMTextViewOC.h"
 #import "XMLabel.h"
 #import "XMNavigationController.h"
-#import "UINavigationController+XMTool.h"
+#import "UIViewController+XMTool.h"
 #import "XMTabBarVC.h"
 #import "XMImageLbl_UpDown.h"
 #import "UITableView+XMTool.h"
