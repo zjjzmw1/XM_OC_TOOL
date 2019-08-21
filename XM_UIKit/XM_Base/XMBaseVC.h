@@ -20,6 +20,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// 刷新空view XMEmptyV：  tipStr 和 retryStr 都为空就隐藏，否则展示
 - (void)refreshEmptyVTipStr:(NSString *)tipStr retryStr:(NSString *)retryStr;
 
+/// 添加导航栏标题
+- (void)addTitleStr:(NSString *)titleStr;
+
+/// 隐藏横线
+- (void)hideNaviBottomLine_xm;
+/// 展示横线
+- (void)showNaviBottomLine_xm;
+
 @end
 
 NS_ASSUME_NONNULL_END
