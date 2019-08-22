@@ -125,6 +125,21 @@ typedef enum : NSUInteger {
     [mutableDict setObject:_st forKey:@"_st"];
     [mutableDict setObject:_si forKey:@"_si"];
     
+#if DEBUG
+    /// 打印出当前请求的完整url
+    NSString *currentTotalUrlStr = [NSString stringWithFormat:@"%@",lastUrlStr];
+    for (int m = 0; m < [mutableDict allKeys].count; m ++) {
+        NSString *tempKey = [mutableDict allKeys][m];
+        NSString *tempValue = [mutableDict objectForKey:tempKey];
+        if ([currentTotalUrlStr stringContainsSubString:@"?"]) { // 有问号
+            currentTotalUrlStr = [NSString stringWithFormat:@"%@&%@=%@",currentTotalUrlStr,tempKey,tempValue];
+        } else {
+            currentTotalUrlStr = [NSString stringWithFormat:@"%@?%@=%@",currentTotalUrlStr,tempKey,tempValue];
+        }
+    }
+    XMLog(@"当前请求的完整url ====== %@",currentTotalUrlStr);
+#endif
+    
     //  ----------------------------------get 请求 ----------------------------------------
     if (methodType == GetMethod_XM) { // get 请求
         [[XMRequestManager shareManager].myManager GET:lastUrlStr parameters:mutableDict progress:^(NSProgress * _Nonnull downloadProgress) {
@@ -132,7 +147,7 @@ typedef enum : NSUInteger {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             /// 取消所有HUD
             [XMTool dismissHUD:0];
-            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
+            //            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
             if ([XMRequestManager getRequestStatus:responseObject] == -2) { // 需要重新登录
                 [UserManager logoutAction];
                 [kAlertVManager otherLoginAlertAction];
@@ -173,7 +188,7 @@ typedef enum : NSUInteger {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             /// 取消所有HUD
             [XMTool dismissHUD:0];
-            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
+            //            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
             if ([XMRequestManager getRequestStatus:responseObject] == -2) { // 需要重新登录
                 [UserManager logoutAction];
                 [kAlertVManager otherLoginAlertAction];
