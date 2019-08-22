@@ -138,12 +138,17 @@
     return t;
 }
 
- /*
+/*
  [[[self.signTV rac_textSignal] takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id x) {
- wSelf.signTV.text = [NSString textViewLimtWithMaxLength:40 textView:wSelf.signTV];
+     NSString *tempStr = [NSString textFieldLimtWithMaxLength:40 textView:wSelf.signTV];
+     if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
+     wSelf.signTV.text = tempStr;
+     } else {
+     // 中文正在输入中，暂时不赋值
+     }
  }];
  */
-/// textFild 限制字数的方法
+/// textFild 限制字数的方法 返回 kChineseNotInputOK_XM 就不赋值
 + (NSString *)textFieldLimtWithMaxLength:(int)maxTextLength textField:(UITextField *)textField {
     NSString *toBeString = textField.text;
     NSString *resultString = textField.text;//业务逻辑
@@ -161,11 +166,11 @@
             } else {
                 resultString = textField.text;
             }
+        } else {
+            return kChineseNotInputOK_XM;
         }
         // 有高亮选择的字符串，则暂不对文字进行统计和限制
-    }
-    // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
-    else {
+    } else { // 中文输入法以外的直接对其统计限制即可，不考虑其他语种情况
         //业务逻辑
         if (toBeString.length > maxTextLength) {
             textField.text = [toBeString substringToIndex:maxTextLength];
@@ -179,19 +184,43 @@
 
 /*
  [[[self.signTV rac_textSignal] takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id x) {
- wSelf.signTV.text = [NSString textViewLimtWithMaxLength:40 textView:wSelf.signTV];
+ if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
+     NSString *tempStr = [NSString textViewLimtWithMaxLength:40 textView:wSelf.signTV];
+     if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
+     wSelf.signTV.text = tempStr;
+     } else {
+     // 中文正在输入中，暂时不赋值
+     }
  }];
  */
-/// textView 限制字数的方法
+/// textView 限制字数的方法  返回 kChineseNotInputOK_XM 就不赋值
 + (NSString *)textViewLimtWithMaxLength:(int)maxTextLength textView:(UITextView *)textView {
     NSString *toBeString = textView.text;
     NSString *resultString = textView.text;//业务逻辑
-    //业务逻辑
-    if (toBeString.length > maxTextLength) {
-        textView.text = [toBeString substringToIndex:maxTextLength];
-        resultString = [textView.text substringToIndex:maxTextLength];
+    NSString *lang = textView.textInputMode.primaryLanguage; // 键盘输入模式
+    if ([lang isEqualToString:@"zh-Hans"]) { // 简体中文输入，包括简体拼音，健体五笔，简体手写
+        UITextRange *selectedRange = [textView markedTextRange];
+        //获取高亮部分
+        UITextPosition *position = [textView positionFromPosition:selectedRange.start offset:0];
+        if (!position) { // 没有高亮选择的字，则对已输入的文字进行字数统计和限制
+            //业务逻辑
+            if (toBeString.length > maxTextLength) {
+                textView.text = [toBeString substringToIndex:maxTextLength];
+                resultString = [textView.text substringToIndex:maxTextLength];
+            } else {
+                resultString = textView.text;
+            }
+        } else { // 中文还没输入完的状态
+            return kChineseNotInputOK_XM;
+        }
+        // 有高亮选择的字符串，则暂不对文字进行统计和限制
     } else {
-        resultString = textView.text;
+        if (toBeString.length > maxTextLength) {
+            textView.text = [toBeString substringToIndex:maxTextLength];
+            resultString = [textView.text substringToIndex:maxTextLength];
+        } else {
+            resultString = textView.text;
+        }
     }
     return resultString;
 }
@@ -468,10 +497,9 @@
     
     /// 删除线
     [attributedString addAttribute:NSStrikethroughStyleAttributeName value:@(NSUnderlineStyleSingle) range:NSMakeRange(0, attributedString.length)];
-
+    
     return attributedString;
 }
-
 
 /// html转码 - 后台返回富文本html，iOS转换为webView能加载的html字符串 （例如： &lt;转成 <，注意本来就是<p>的标签的话，调用本方法会失去样式效果，变为text文本格式了）
 + (NSString *)getWebViewHtmlStr:(NSString *)htmlStr {
@@ -480,6 +508,5 @@
     NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithData:lastData options:options documentAttributes:nil error:nil];
     return contentText.string;
 }
-
 
 @end

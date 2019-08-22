@@ -11,6 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/// 中文还未输入完成的时候，返回的字符串
+#define kChineseNotInputOK_XM      @"zh-Hans_not_input_ok_XM"
+
 /// 字符串相关工具类
 @interface NSString (XMTool)
 
@@ -28,9 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 去除两端空格和换行
 + (NSString *)quKongGeAndEnder:(NSString *)sender;
 
-/// textFild 限制字数的方法
+/// textFild 限制字数的方法 返回 kChineseNotInputOK_XM 就不赋值
 + (NSString *)textFieldLimtWithMaxLength:(int)maxTextLength textField:(UITextField *)textField;
-/// textView 限制字数的方法
+/// textView 限制字数的方法 返回 kChineseNotInputOK_XM 就不赋值
 + (NSString *)textViewLimtWithMaxLength:(int)maxTextLength textView:(UITextView *)textView;
 
 /// 获取当前时间的时间戳 的 字符串
