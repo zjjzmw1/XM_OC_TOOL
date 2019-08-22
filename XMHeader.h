@@ -19,6 +19,7 @@
 #import "NSString+XMValid.h"
 #import "NSDate+XMTool.h"
 #import "NSArray+XMSafe.h"      // 防止数组越界
+#import "XMTimer.h"   // 好用的定时器管理
 
 // UIKit 相关
 #import <UIKit/UIKit.h>
