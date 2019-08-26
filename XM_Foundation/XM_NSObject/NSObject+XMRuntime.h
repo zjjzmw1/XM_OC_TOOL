@@ -20,6 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 方法交互
 - (void)xm_swizzleMethod:(SEL)originSelector swizzledSelector:(SEL)swizzleSelector;
 
+/// 方法交互 -- 类方法
++ (void)xm_class_swizzleMethod:(SEL)originSelector swizzledSelector:(SEL)swizzleSelector;
+
 @end
 
 NS_ASSUME_NONNULL_END
