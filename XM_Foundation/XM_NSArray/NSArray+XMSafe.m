@@ -54,7 +54,7 @@
 /// 插入空，越界的崩溃处理
 - (void)xm_insertObject:(id)obj atIndex:(NSUInteger)index {
     // 数组越界也不会崩，但是开发的时候并不知道数组越界
-    if (index > (self.count - 1)) { // 数组越界
+    if (index > self.count) { // 数组越界 - insert的时候 index 可以等于数组数量
         NSAssert(NO, @"数组越界了,xm_insertObject"); // NSAssert 只有开发的时候才会造成程序崩了
     } else { // 没越界
         if (obj) { // 不为空
