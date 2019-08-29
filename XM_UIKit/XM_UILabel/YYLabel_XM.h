@@ -1,7 +1,6 @@
 
 /// -------------------------- 需要引用第三方库： pod 'YYText', '~> 1.0.7' --------------------------
-#import "YYLabel.h"
-#import "YYText.h"
+#import <YYText/YYText.h>
 
 /// 下面的方法用到的block - 点击图片的回调，返回点击后展示的图片。
 typedef void(^kCurrentShowImg)(UIImage * __nullable currentShowImg);
