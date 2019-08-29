@@ -7,6 +7,7 @@
 //
 
 #import "UITableView+XMTool.h"
+#import "UIColor+XMTool.h"
 
 @implementation UITableView (XMTool)
 

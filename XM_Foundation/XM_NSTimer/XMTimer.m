@@ -7,6 +7,7 @@
 //
 
 #import "XMTimer.h"
+#import "NSString+XMValid.h"
 
 @interface XMTimer ()
 

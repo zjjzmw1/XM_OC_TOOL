@@ -7,6 +7,8 @@
 //
 
 #import "NSString+XMTool.h"
+#import "NSDate+XMTool.h"
+#import "NSString+XMValid.h"
 #import <CommonCrypto/CommonDigest.h>
 // 解析域名用的
 #include <netdb.h>
@@ -140,12 +142,12 @@
 
 /*
  [[[self.signTV rac_textSignal] takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id x) {
-     NSString *tempStr = [NSString textFieldLimtWithMaxLength:40 textView:wSelf.signTV];
-     if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
-     wSelf.signTV.text = tempStr;
-     } else {
-     // 中文正在输入中，暂时不赋值
-     }
+ NSString *tempStr = [NSString textFieldLimtWithMaxLength:40 textView:wSelf.signTV];
+ if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
+ wSelf.signTV.text = tempStr;
+ } else {
+ // 中文正在输入中，暂时不赋值
+ }
  }];
  */
 /// textFild 限制字数的方法 返回 kChineseNotInputOK_XM 就不赋值
@@ -185,12 +187,12 @@
 /*
  [[[self.signTV rac_textSignal] takeUntil:[self rac_willDeallocSignal]] subscribeNext:^(id x) {
  if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
-     NSString *tempStr = [NSString textViewLimtWithMaxLength:40 textView:wSelf.signTV];
-     if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
-     wSelf.signTV.text = tempStr;
-     } else {
-     // 中文正在输入中，暂时不赋值
-     }
+ NSString *tempStr = [NSString textViewLimtWithMaxLength:40 textView:wSelf.signTV];
+ if (![tempStr isEqualToString:kChineseNotInputOK_XM]) {
+ wSelf.signTV.text = tempStr;
+ } else {
+ // 中文正在输入中，暂时不赋值
+ }
  }];
  */
 /// textView 限制字数的方法  返回 kChineseNotInputOK_XM 就不赋值
@@ -508,5 +510,226 @@
     NSMutableAttributedString *contentText = [[NSMutableAttributedString alloc] initWithData:lastData options:options documentAttributes:nil error:nil];
     return contentText.string;
 }
+
+#pragma mark - 判断字符串是否包含表情
++ (BOOL)stringContainsEmoji:(NSString *)string
+{
+    __block BOOL returnValue = NO;
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0, [string length])
+                               options:NSStringEnumerationByComposedCharacterSequences
+                            usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+                                const unichar hs = [substring characterAtIndex:0];
+                                if (0xd800 <= hs && hs <= 0xdbff) {
+                                    if (substring.length > 1) {
+                                        const unichar ls = [substring characterAtIndex:1];
+                                        const int uc = ((hs - 0xd800) * 0x400) + (ls - 0xdc00) + 0x10000;
+                                        if (0x1d000 <= uc && uc <= 0x1f77f) {
+                                            returnValue = YES;
+                                        }
+                                    }
+                                } else if (substring.length > 1) {
+                                    const unichar ls = [substring characterAtIndex:1];
+                                    if (ls == 0x20e3) {
+                                        returnValue = YES;
+                                    }
+                                } else {
+                                    if (0x2100 <= hs && hs <= 0x27ff) {
+                                        returnValue = YES;
+                                    } else if (0x2B05 <= hs && hs <= 0x2b07) {
+                                        returnValue = YES;
+                                    } else if (0x2934 <= hs && hs <= 0x2935) {
+                                        returnValue = YES;
+                                    } else if (0x3297 <= hs && hs <= 0x3299) {
+                                        returnValue = YES;
+                                    } else if (hs == 0xa9 || hs == 0xae || hs == 0x303d || hs == 0x3030 || hs == 0x2b55 || hs == 0x2b1c || hs == 0x2b1b || hs == 0x2b50) {
+                                        returnValue = YES;
+                                    }
+                                }
+                            }];
+    
+    return returnValue;
+}
+
+/// 去除所有换行和前后空格
++(NSString *)removeHeaderFooterNewlineBlank: (NSString *)string {
+    NSString *temp = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    temp = [temp stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    return temp;
+}
+
+- (BOOL)stringContainsSubString:(NSString *)subString {
+    NSRange aRange = [self rangeOfString:subString];
+    if (aRange.location == NSNotFound) {
+        return NO;
+    }
+    
+    return YES;
+}
+
+- (BOOL)matchStringWithRegextes:(NSString*)regString{
+    
+    NSPredicate* predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regString];
+    BOOL result = [predicate evaluateWithObject:self];
+    return result;
+}
+
+/**
+ * 16进制 data
+ */
+- (NSData*)hexData{
+    
+    NSMutableData* data = [NSMutableData data];
+    int idx;
+    for (idx = 0; idx + 2 <= self.length; idx+=2) {
+        NSRange range = NSMakeRange(idx, 2);
+        NSString* hexStr = [self substringWithRange:range];
+        NSScanner* scanner = [NSScanner scannerWithString:hexStr];
+        unsigned int intValue;
+        [scanner scanHexInt:&intValue];
+        [data appendBytes:&intValue length:1];
+    }
+    return data;
+}
+
+- (NSString*)digitString:(NSInteger)digit{
+    NSString* string = [self copy];
+    while (string.length < digit) {
+        string = [@"0" stringByAppendingString:string];
+    }
+    return string;
+}
+
+#pragma mark - 获取当前时间的时间戳。
++ (NSString *)getCurrentTimeString {
+    NSDate* dat = [NSDate dateWithTimeIntervalSinceNow:0];
+    NSTimeInterval a=[dat timeIntervalSince1970]*1000;
+    NSString *timeString = [NSString stringWithFormat:@"%.0f", a];
+    return timeString;
+}
+
+
+- (BOOL)isValidEmail {
+    NSString *emailPattern =
+    @"(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"
+    @"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"
+    @"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"
+    @"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"
+    @"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"
+    @"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"
+    @"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:emailPattern options:NSRegularExpressionCaseInsensitive error:&error];
+    NSTextCheckingResult *match = [regex firstMatchInString:self options:0 range:NSMakeRange(0, [self length])];
+    return match != nil;
+}
+
+#pragma mark - trim string
+- (NSString *)trim {
+    
+    return [[NSString stringWithFormat:@"%@",self] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
+
+- (BOOL)isChinese
+{
+    NSString *match = @"(^[\u4e00-\u9fa5]+$)";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF matches %@", match];
+    return [predicate evaluateWithObject:self];
+}
+
+
+/**
+ 获取字符串的size
+ 
+ @param font 字体
+ */
+- (CGSize)getSizeWithFont:(UIFont *)font {
+    CGSize fontSize = [self sizeWithAttributes:@{NSFontAttributeName : font}];
+    return fontSize;
+}
+
+- (CGSize)sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode {
+    CGSize result;
+    if (!font) font = [UIFont systemFontOfSize:12];
+    if ([self respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableDictionary *attr = [NSMutableDictionary new];
+        attr[NSFontAttributeName] = font;
+        if (lineBreakMode != NSLineBreakByWordWrapping) {
+            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+            paragraphStyle.lineBreakMode = lineBreakMode;
+            attr[NSParagraphStyleAttributeName] = paragraphStyle;
+        }
+        CGRect rect = [self boundingRectWithSize:size
+                                         options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                      attributes:attr context:nil];
+        result = rect.size;
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        result = [self sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
+#pragma clang diagnostic pop
+    }
+    return result;
+}
+
+- (CGFloat)widthForFont:(UIFont *)font {
+    CGSize size = [self sizeForFont:font size:CGSizeMake(HUGE, HUGE) mode:NSLineBreakByWordWrapping];
+    return size.width;
+}
+
+- (CGFloat)heightForFont:(UIFont *)font width:(CGFloat)width {
+    CGSize size = [self sizeForFont:font size:CGSizeMake(width, HUGE) mode:NSLineBreakByWordWrapping];
+    return size.height;
+}
+
+/// 获取当前月份  例如： JAN
++ (NSString *)getCurrentMonthStr {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *now;
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    now=[NSDate date];
+    comps = [calendar components:unitFlags fromDate:now];
+    int month = [comps month];
+    if (month == 1) {
+        return @"JAN";
+    } else if (month == 2) {
+        return @"FEB";
+    } else if (month == 3) {
+        return @"MAR";
+    } else if (month == 4) {
+        return @"APR";
+    } else if (month == 5) {
+        return @"MAY";
+    } else if (month == 6) {
+        return @"JUN";
+    } else if (month == 7) {
+        return @"JUL";
+    } else if (month == 8) {
+        return @"AUG";
+    } else if (month == 9) {
+        return @"SEP";
+    } else if (month == 10) {
+        return @"OCT";
+    } else if (month == 11) {
+        return @"NOV";
+    } else {
+        return @"DEC";
+    }
+}
+/// 获取当前月的第几天  例如： 23
++ (NSString *)getCurrentDayStr {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDate *now;
+    NSDateComponents *comps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekdayCalendarUnit |
+    NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    now=[NSDate date];
+    comps = [calendar components:unitFlags fromDate:now];
+    int day = [comps day];
+    return [NSString stringWithFormat:@"%d",day];
+}
+
 
 @end

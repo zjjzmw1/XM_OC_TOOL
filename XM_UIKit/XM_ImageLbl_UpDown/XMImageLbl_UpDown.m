@@ -7,6 +7,10 @@
 //
 
 #import "XMImageLbl_UpDown.h"
+#import <Masonry/Masonry.h>
+#import "UIColor+XMTool.h"
+#import "UILabel+XMTool.h"
+#import "XMToolMacro.h"
 
 @implementation XMImageLbl_UpDown
 

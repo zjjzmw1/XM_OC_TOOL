@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface XMTool : NSObject
+
 // --------------------------HUD常用方法封装，方便随时更换HUD第三方 BEGIN-------------------------
 /// 一直loading动画的HUD -- 背景可以点击
 + (void)showHUD;
@@ -23,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)dismissHUD:(NSTimeInterval)time;
 // --------------------------HUD常用方法封装，方便随时更换HUD第三方 END-------------------------
 
+/// 返回联网状态： 0：未联网，1：4G  2: wifi
++ (int)getCurrentNetworkInt;
 /// 获取当前屏幕显示的viewcontroller
 + (nullable UIViewController *)getCurrentVC;
 

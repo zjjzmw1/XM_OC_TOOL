@@ -70,7 +70,7 @@ typedef enum {
  *
  *  @return UIButton
  */
-+ (UIButton *)getButtonImageTitleWithImage:(UIImage *)image title:(NSString *)title titleColor:(UIColor *)titleColor spacing:(float)spacing alignmentType:(ButtonImageTitleType)type aFont:(UIFont *)aFont;
++ (UIButton *)getButtonImageTitleWithImage:(nullable UIImage *)image title:(NSString *)title titleColor:(UIColor *)titleColor spacing:(float)spacing alignmentType:(ButtonImageTitleType)type aFont:(UIFont *)aFont;
 
 @end
 

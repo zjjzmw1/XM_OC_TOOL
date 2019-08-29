@@ -7,6 +7,8 @@
 //
 
 #import "XMRouterTool.h"
+#import "XMTool.h"
+#import "XMWebVC.h"
 
 @implementation XMRouterTool
 

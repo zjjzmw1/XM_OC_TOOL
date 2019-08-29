@@ -8,6 +8,8 @@
 
 #import "XMTabBarVC.h"
 #import "UIColor+XMTool.h"
+#import "XMSizeMacro.h"                 // OC 尺寸相关宏
+#import "XMNavigationController.h"
 
 /// 自定义的tabbar 按钮
 @interface XMTabBarButton : UIButton

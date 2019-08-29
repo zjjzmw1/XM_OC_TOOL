@@ -7,6 +7,12 @@
 //
 
 #import "XMBaseVC.h"
+#import "UIViewController+XMTool.h"
+#import <IQKeyboardManager/IQKeyboardManager.h>
+#import "NSString+XMValid.h"
+#import "UIColor+XMTool.h"
+#import "XMSizeMacro.h"
+#import "UIImageView+XMTool.h"
 
 @interface XMBaseVC ()
 

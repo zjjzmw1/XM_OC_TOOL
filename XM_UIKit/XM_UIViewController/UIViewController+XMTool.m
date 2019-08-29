@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+XMTool.h"
+#import "UINavigationController+FDFullscreenPopGesture.h"
 
 @implementation UIViewController (XMTool)
 

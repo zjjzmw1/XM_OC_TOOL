@@ -19,11 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 第二步： - 添加【可点击】的 ”子字符串“
 - (void)addAttriStrCanClick:(NSString *)str
-                       font:(UIFont *)font
-                  textColor:(UIColor *)textColor
-         highLightTextColor:(UIColor *)highLightTextColor
-           highLightBgColor:(UIColor *)highLightBgColor
-                  tapAction:(YYTextAction)tapAction;
+                    font:(UIFont *)font
+               textColor:(UIColor *)textColor
+      highLightTextColor:(UIColor *)highLightTextColor
+        highLightBgColor:(UIColor *)highLightBgColor
+               tapAction:(YYTextAction)tapAction;
 
 /// 第二步： - 添加图片 - imgSize传CGSizeZero的时候用默认为：CGSizeMake(20, 20) 图片大小会影响行间距,太大也可能会导致无法换行
 - (void)addAttriImage:(UIImage *)img imgSize:(CGSize)imgSize;

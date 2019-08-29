@@ -7,6 +7,7 @@
 //
 
 #import "NSString+XMBusiness.h"
+#import "NSString+XMValid.h"
 
 @implementation NSString (XMBusiness)
 

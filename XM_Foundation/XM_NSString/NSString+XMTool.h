@@ -74,6 +74,82 @@ NS_ASSUME_NONNULL_BEGIN
 /// html转码 - 后台返回富文本html，iOS转换为webView能加载的html字符串 （例如： &lt;转成 <，注意本来就是<p>的标签的话，调用本方法会失去样式效果，变为text文本格式了）
 + (NSString *)getWebViewHtmlStr:(NSString *)htmlStr;
 
+
+/**
+ *  判断字符串是否含表情
+ *
+ *  @param string 原有字符串
+ *
+ *  @return 返回是否有标题
+ */
++ (BOOL)stringContainsEmoji:(NSString *)string;
+
+/// 去除所有换行和前后空格
++(NSString *)removeHeaderFooterNewlineBlank: (NSString *)string;
+
+/**
+ *  @brief 判断NSString是否包含另一个字符串
+ *
+ *  @param subString 子字符串
+ *
+ *  @return YES:包含，NO:不包含.
+ */
+- (BOOL)stringContainsSubString:(NSString *)subString;
+
+/**
+ *  @brief 字符串匹配正则表达式
+ *
+ *  @param regString 正则表达式
+ *
+ *  @return YES:匹配， NO:不匹配.
+ */
+- (BOOL)matchStringWithRegextes:(NSString*)regString;
+
+/**
+ *  @brief  将16进制字符串转换为NSData.
+ *
+ *  @return 16进制 data
+ */
+- (NSData*)hexData;
+
+- (NSString*)digitString:(NSInteger)digit;
+
+/**
+ *  获取当前时间的时间戳。
+ *
+ *  @return 时间戳
+ */
++(NSString *)getCurrentTimeString;
+
+/**
+ *  判断邮箱是否可用
+ *
+ */
+- (BOOL)isValidEmail;
+#pragma mark - trim string
+- (NSString *)trim;
+
+- (BOOL)isChinese;
+
+/**
+ 获取字符串的size
+ 
+ @param font 字体
+ return
+ */
+- (CGSize)getSizeWithFont:(UIFont *)font;
+
+- (CGSize)sizeForFont:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
+
+- (CGFloat)widthForFont:(UIFont *)font;
+
+- (CGFloat)heightForFont:(UIFont *)font width:(CGFloat)width;
+
+/// 获取当前月份  例如： JAN
++ (NSString *)getCurrentMonthStr;
+/// 获取当前月的第几天  例如： 23
++ (NSString *)getCurrentDayStr;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -77,7 +77,7 @@
             
             //            CGSize size = [_placeholder boundingRectWithSize:CGSizeMake(rect.size.width - 8, 100) options:NSStringDrawingTruncatesLastVisibleLine attributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:self.placeholerFontSize] } context:nil].size;
             // 不能用这个方法，因为使用者可能会更改font，导致size太小
-            //            CGSize size = [NSString getSizeWithStrWidth:_placeholder font:[UIFont systemFontOfSize:self.placeholerFontSize] width:rect.size.width].size;
+//            CGSize size = [NSString getSizeWithStrWidth:_placeholder font:[UIFont systemFontOfSize:self.placeholerFontSize] width:rect.size.width].size;
             CGSize size = CGSizeMake(rect.size.width - 8, rect.size.height - 16);
             
             [_placeholder drawInRect:CGRectMake(4.0f, 8.0f, size.width - 8, size.height) withAttributes:@{ NSFontAttributeName: [UIFont systemFontOfSize:self.placeholerFontSize], NSForegroundColorAttributeName: self.placeholderColor }];

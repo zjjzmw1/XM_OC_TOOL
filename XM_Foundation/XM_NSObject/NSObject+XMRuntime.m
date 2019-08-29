@@ -17,7 +17,7 @@
     for (unsigned int i = 0; i < count; i++) {
         Protocol *pro = protocolList[i];
         const char *proName = protocol_getName(pro);
-        XMLog(@"proName = %@",[NSString stringWithUTF8String:proName]);
+        NSLog(@"proName = %@",[NSString stringWithUTF8String:proName]);
     }
 }
 

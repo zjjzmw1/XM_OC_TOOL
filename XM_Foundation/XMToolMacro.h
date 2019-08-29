@@ -28,6 +28,9 @@
 /// 当前构建版本 - Build 例如：12 - 字符串类型
 #define kCurrentBuidVersionStr_XM   [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
 
+/// 默认字体
+#define FontWithSize(n) [UIFont systemFontOfSize:n]
+#define FontBoldWithSize(n) [UIFont boldSystemFontOfSize:n]
 
 /// 语言判断：-------- 语言是否是中文 BOOL ---------------
 #define kLanguage_Is_Chinese_XM          ([([[NSLocale preferredLanguages] objectAtIndex:0]) == nil ? @"" : ([[NSLocale preferredLanguages] objectAtIndex:0]) hasPrefix:@"zh"])

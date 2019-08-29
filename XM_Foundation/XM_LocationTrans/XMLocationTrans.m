@@ -7,6 +7,7 @@
 //
 
 #import "XMLocationTrans.h"
+#import <UIKit/UIGeometry.h>
 #include <math.h>
 
 @implementation XMLocationTrans

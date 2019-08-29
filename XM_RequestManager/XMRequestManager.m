@@ -7,6 +7,10 @@
 //  小明系列 - OC版本 - 网络请求封装库 - 对AFNetworking的封装
 
 #import "XMRequestManager.h"
+#import "XMToolMacro.h"
+#import "NSString+XMValid.h"
+#import "NSString+XMTool.h"
+#import "XMTool.h"
 
 typedef enum : NSUInteger {
     GetMethod_XM,    //  get 请求
@@ -40,11 +44,11 @@ typedef enum : NSUInteger {
     AFSecurityPolicy *securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
     securityPolicy.validatesDomainName = YES;
     self.myManager.securityPolicy = securityPolicy;
-    
+
     /// 存储所有不需要弹出错误提示的请求
-    [self.notShowErrorTipUrlArr addObject:kHasNewCourse]; // 小红点不弹
-    [self.notShowErrorTipUrlArr addObject:EKHomeCustomizePath]; // 定制
-    [self.notShowErrorTipUrlArr addObject:MyPracticeDetails]; // 我的练习
+//    [self.notShowErrorTipUrlArr addObject:kHasNewCourse]; // 小红点不弹
+//    [self.notShowErrorTipUrlArr addObject:EKHomeCustomizePath]; // 定制
+//    [self.notShowErrorTipUrlArr addObject:MyPracticeDetails]; // 我的练习
     
     return self;
 }
@@ -112,9 +116,9 @@ typedef enum : NSUInteger {
 + (void)baseRequestMethodType:(kRequestMethodType_XM)methodType urlStr:(NSString *)urlStr params:(NSDictionary *)params succsuccessBlockess:(SuccessBlock_XM)success failureBlock:(FailureBlock_XM)failure {
     // 获取最终的url
     NSString *lastUrlStr = [NSString stringWithFormat:@"%@",urlStr];
-    if (![lastUrlStr hasPrefix:kBaseUrl]) {
-        lastUrlStr = [NSString stringWithFormat:@"%@%@",kBaseUrl,urlStr];
-    }
+//    if (![lastUrlStr hasPrefix:kBaseUrl]) {
+//        lastUrlStr = [NSString stringWithFormat:@"%@%@",kBaseUrl,urlStr];
+//    }
     NSMutableDictionary *mutableDict = [NSMutableDictionary dictionaryWithDictionary:params];
     /// 添加通用的参数
     int _t = [[[NSDate alloc] init] timeIntervalSince1970];
@@ -124,7 +128,7 @@ typedef enum : NSUInteger {
     [mutableDict setObject:@(_t) forKey:@"_t"];
     [mutableDict setObject:_st forKey:@"_st"];
     [mutableDict setObject:_si forKey:@"_si"];
-    
+
 #if DEBUG
     /// 打印出当前请求的完整url
     NSString *currentTotalUrlStr = [NSString stringWithFormat:@"%@",lastUrlStr];
@@ -147,10 +151,10 @@ typedef enum : NSUInteger {
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             /// 取消所有HUD
             [XMTool dismissHUD:0];
-            //            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
+//            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
             if ([XMRequestManager getRequestStatus:responseObject] == -2) { // 需要重新登录
-                [UserManager logoutAction];
-                [kAlertVManager otherLoginAlertAction];
+//                [UserManager logoutAction];
+//                [kAlertVManager otherLoginAlertAction];
             }
             if (([XMRequestManager getRequestStatus:responseObject] != 0) && ([XMRequestManager getRequestStatus:responseObject] != -2) && ([XMRequestManager getRequestStatus:responseObject] != 10000)) { // 提示错误信息
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -181,17 +185,17 @@ typedef enum : NSUInteger {
             }
         }];
     }
-    //  ----------------------------------post 请求 ----------------------------------------
+     //  ----------------------------------post 请求 ----------------------------------------
     if (methodType == PostMethod_XM) {
         [[XMRequestManager shareManager].myManager POST:lastUrlStr parameters:mutableDict progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             /// 取消所有HUD
             [XMTool dismissHUD:0];
-            //            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
+//            XMLog(@"\n [%@] 请求的成功结果: %@ \n",urlStr, responseObject);
             if ([XMRequestManager getRequestStatus:responseObject] == -2) { // 需要重新登录
-                [UserManager logoutAction];
-                [kAlertVManager otherLoginAlertAction];
+//                [UserManager logoutAction];
+//                [kAlertVManager otherLoginAlertAction];
             }
             if (([XMRequestManager getRequestStatus:responseObject] != 0) && ([XMRequestManager getRequestStatus:responseObject] != -2) && ([XMRequestManager getRequestStatus:responseObject] != 10000)) { // 提示错误信息
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{

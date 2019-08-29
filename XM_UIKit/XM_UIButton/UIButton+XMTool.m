@@ -7,6 +7,7 @@
 //
 
 #import "UIButton+XMTool.h"
+#import "NSString+XMValid.h"
 #import <objc/runtime.h>
 
 static const char * kHitEdgeInsets = "hitEdgeInsets";
@@ -126,7 +127,7 @@ static const char * kHitHeightScale      = "hitHeightScale";
  *
  *  @return UIButton
  */
-+ (UIButton *)getButtonImageTitleWithImage:(UIImage *)image title:(NSString *)title titleColor:(UIColor *)titleColor spacing:(float)spacing alignmentType:(ButtonImageTitleType)type aFont:(UIFont *)aFont {
++ (UIButton *)getButtonImageTitleWithImage:(nullable UIImage *)image title:(NSString *)title titleColor:(UIColor *)titleColor spacing:(float)spacing alignmentType:(ButtonImageTitleType)type aFont:(UIFont *)aFont {
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setBackgroundColor:[UIColor clearColor]];
     [button setTitle:title forState:UIControlStateNormal];

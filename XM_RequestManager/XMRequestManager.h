@@ -6,7 +6,7 @@
 //  Copyright © 2019 YiKuNetwork. All rights reserved.
 //  小明系列 - OC版本 - 网络请求封装库 - 对AFNetworking的封装
 
-#import "AFURLSessionManager.h"
+#import <AFNetworking/AFNetworking.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

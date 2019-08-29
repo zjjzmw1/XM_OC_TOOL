@@ -7,6 +7,10 @@
 //
 
 #import "XMEmptyV.h"
+#import "UILabel+XMTool.h"
+#import "UIColor+XMTool.h"
+#import "UIView+XMTool.h"
+#import "XMSizeMacro.h"                 // OC 尺寸相关宏
 
 @interface XMEmptyV()
 

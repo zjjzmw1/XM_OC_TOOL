@@ -7,6 +7,11 @@
 //
 
 #import "XMTool.h"
+#import <SVProgressHUD/SVProgressHUD.h>
+#import "NSString+XMValid.h"
+#import "XMTabBarVC.h"
+#import "Reachability.h"
+#import "XMToolMacro.h"
 
 @interface XMTool()
 
@@ -28,6 +33,19 @@
     return instance;
 }
 
+/// 返回联网状态： 0：未联网，1：4G  2: wifi
++ (int)getCurrentNetworkInt {
+    //得到3G网络装填
+    NetworkStatus gprs = [[Reachability reachabilityForInternetConnection]currentReachabilityStatus];
+    if (gprs == ReachableViaWiFi) { // WiFi
+        return 2;
+    }
+    if (gprs == ReachableViaWWAN) { // WiFi
+        return 1;
+    }
+    return 0;
+}
+
 /// 一直loading动画的HUD -- 背景可以点击
 + (void)showHUD {
     [XMTool shareManager].isReadyDissmiss = NO;
@@ -45,7 +63,7 @@
     [XMTool shareManager].isReadyDissmiss = YES;
     [SVProgressHUD dismissWithDelay:0];
     [SVProgressHUD setErrorImage:[UIImage imageNamed:@""]];
-    if ([Tool getCurrentNetworkInt] == 0) { // 未联网
+    if ([XMTool getCurrentNetworkInt] == 0) { // 未联网
         [SVProgressHUD showErrorWithStatus:kNetworkErrorTipStr_XM];
     } else if (![NSString isEmptyString:tipStr]) {
         [SVProgressHUD showErrorWithStatus:tipStr];
@@ -129,7 +147,7 @@
         now = [NSDate dateWithTimeIntervalSinceNow:-1.1]; // 第一次赋值当然是不能被拦截的。
     }
     if ([[NSDate dateWithTimeIntervalSinceNow:-0.9] compare:now] != kCFCompareGreaterThan) { // 比之前保存的时候小就拦截
-        NSLog(@"XMTool: 小于1秒就调用%@被拦截了",funcName);
+//        NSLog(@"XMTool: 小于1秒就调用%@被拦截了",funcName);
         return YES; // 1秒内不能重复调用这个方法
     }
     now = [NSDate date];

@@ -7,6 +7,11 @@
 //
 
 #import "XMWebVC.h"
+#import "XMSizeMacro.h"
+#import "XMTool.h"
+#import "XMToolMacro.h"
+#import "NSString+XMValid.h"
+#import "UIColor+XMTool.h"
 
 @interface XMWebVC ()<WKNavigationDelegate>
 
@@ -25,6 +30,10 @@
     self.myWebView.frame = CGRectMake(0, 0, kScreenWidth_XM, kScreenHeight_XM - kNaviStatusBarH_XM);
     [self.view addSubview:self.myProgressView];
     [self.myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]]];
+    
+    if ([XMTool getCurrentNetworkInt] == 0) {
+        [XMTool showTipHUD:kNetworkErrorTipStr_XM];
+    }
 }
 
 // 记得取消监听

@@ -7,6 +7,8 @@
 //
 
 #import "YYLabel_XM.h"
+#import "XMSizeMacro.h"
+#import "XMToolMacro.h"
 
 @interface YYLabel_XM()
 
@@ -47,11 +49,11 @@
 
 /// 第二步： - 添加【可点击】的 ”子字符串“
 - (void)addAttriStrCanClick:(NSString *)str
-                       font:(UIFont *)font
-                  textColor:(UIColor *)textColor
-         highLightTextColor:(UIColor *)highLightTextColor
-           highLightBgColor:(UIColor *)highLightBgColor
-                  tapAction:(YYTextAction)tapAction {
+                    font:(UIFont *)font
+                    textColor:(UIColor *)textColor
+                    highLightTextColor:(UIColor *)highLightTextColor
+                    highLightBgColor:(UIColor *)highLightBgColor
+                    tapAction:(YYTextAction)tapAction {
     
     NSMutableAttributedString *attri = [[NSMutableAttributedString alloc] initWithString:str];
     attri.yy_color = textColor;
@@ -71,7 +73,7 @@
     if (imgSize.width == 0 || imgSize.height == 0) {
         lastImgSize = CGSizeMake(20, 20);
     }
-    
+
     NSMutableAttributedString *attachText = [NSMutableAttributedString  yy_attachmentStringWithContent:img contentMode:UIViewContentModeCenter attachmentSize:lastImgSize alignToFont:FontWithSize(15) alignment:YYTextVerticalAlignmentCenter];
     /// 添加到总的图文
     [self.myAttriStr appendAttributedString:attachText];
