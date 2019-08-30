@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  修改label内容距 `top` `left` `bottom` `right` 边距
  */
-@property (nonatomic, assign) UIEdgeInsets yf_contentInsets;
+@property (nonatomic, assign) UIEdgeInsets xm_contentInsets;
 
 /// 便利的 获取常用的 UILabel --- 默认左对齐
 + (UILabel *)getLabelWithFont:(UIFont *)font textColor:(UIColor *)textColor;

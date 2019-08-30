@@ -44,25 +44,25 @@ ReplaceMethod(Class _class, SEL _originSelector, SEL _newSelector) {
 }
 
 - (void)yf_drawTextInRect:(CGRect)rect {
-    UIEdgeInsets insets = self.yf_contentInsets;
+    UIEdgeInsets insets = self.xm_contentInsets;
     [self yf_drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
 }
 
 - (CGSize)yf_sizeThatFits:(CGSize)size {
-    UIEdgeInsets insets = self.yf_contentInsets;
+    UIEdgeInsets insets = self.xm_contentInsets;
     size = [self yf_sizeThatFits:CGSizeMake(size.width - UIEdgeInsetsGetHorizontalValue(insets), size.height-UIEdgeInsetsGetVerticalValue(insets))];
     size.width += UIEdgeInsetsGetHorizontalValue(insets);
     size.height += UIEdgeInsetsGetVerticalValue(insets);
     return size;
 }
 
-const void *kAssociatedYf_contentInsets;
-- (void)setYf_contentInsets:(UIEdgeInsets)yf_contentInsets {
-    objc_setAssociatedObject(self, &kAssociatedYf_contentInsets, [NSValue valueWithUIEdgeInsets:yf_contentInsets] , OBJC_ASSOCIATION_RETAIN);
+const void *kAssociatedxm_contentInsets;
+- (void)setXm_contentInsets:(UIEdgeInsets)xm_contentInsets {
+    objc_setAssociatedObject(self, &kAssociatedxm_contentInsets, [NSValue valueWithUIEdgeInsets:xm_contentInsets] , OBJC_ASSOCIATION_RETAIN);
 }
 
-- (UIEdgeInsets)yf_contentInsets {
-    return [objc_getAssociatedObject(self, &kAssociatedYf_contentInsets) UIEdgeInsetsValue];
+- (UIEdgeInsets)xm_contentInsets {
+    return [objc_getAssociatedObject(self, &kAssociatedxm_contentInsets) UIEdgeInsetsValue];
 }
 
 
