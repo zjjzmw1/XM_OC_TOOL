@@ -731,5 +731,18 @@
     return [NSString stringWithFormat:@"%d",day];
 }
 
+/// iOS13 正确的获得Devicetoken的代码如下：ios13之前也能正常获取，向下兼容的
++ (NSString *)getDeviceTokenString_XM:(NSData *)deviceToken {
+    if (![deviceToken isKindOfClass:[NSData class]]) {
+        return @"";
+    }
+    const unsigned *tokenBytes = (const unsigned *)[deviceToken bytes];
+    NSString *hexToken = [NSString stringWithFormat:@"%08x%08x%08x%08x%08x%08x%08x%08x",
+                          ntohl(tokenBytes[0]), ntohl(tokenBytes[1]), ntohl(tokenBytes[2]),
+                          ntohl(tokenBytes[3]), ntohl(tokenBytes[4]), ntohl(tokenBytes[5]),
+                          ntohl(tokenBytes[6]), ntohl(tokenBytes[7])];
+    NSLog(@"ios13后获取deviceToken:%@",hexToken);
+    return hexToken;
+}
 
 @end

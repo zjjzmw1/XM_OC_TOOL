@@ -150,6 +150,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 获取当前月的第几天  例如： 23
 + (NSString *)getCurrentDayStr;
 
+/// iOS13 正确的获得Devicetoken的代码如下：ios13之前也能正常获取，向下兼容的
++ (NSString *)getDeviceTokenString_XM:(NSData *)deviceToken;
+
 @end
 
 NS_ASSUME_NONNULL_END
