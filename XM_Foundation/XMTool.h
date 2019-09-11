@@ -49,6 +49,19 @@ NS_ASSUME_NONNULL_BEGIN
 /// 隐藏指定位置角标 -- 不管是小红点还是数字都隐藏
 + (void)hideMarkIndex:(NSInteger)index;
 
+#pragma mark ==========================获取空间大小相关 BEGIN===================================
+/// 获取本地视频的缓存大小。---- 这里可以根据自己项目存储的位置选择修改。
++ (float )getLocalVideoCacheSize_XM;
+/// 获取手机剩余空间大小单位是：bytes
++ (float)getMyPhoneFreeSize_XM;
+/// 获取某个文件夹的大小 单位：bytes
++ (float)getFolderSizeAtPath_XM:(NSString *)folderPath;
+/// 获取单个文件的大小 单位：bytes
++ (long long)getFileSizeAtPath_XM:(NSString*)filePath;
+/// 根据 byte的大小，返回 多少GB /MB/KB/B
++ (NSString *)getFileSizeStringFromBytes_XM:(uint64_t)byteSize;
+#pragma mark ==========================获取空间大小相关 END===================================
+
 
 @end
 
