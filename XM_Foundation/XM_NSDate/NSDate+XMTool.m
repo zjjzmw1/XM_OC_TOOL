@@ -10,6 +10,27 @@
 
 @implementation NSDate (XMTool)
 
+/// 获取时间的字符串 "yyyy-MM-dd HH:mm:ss"
+- (NSString *)getDateStr_XM {
+    NSString *format = @"yyyy-MM-dd HH:mm:ss";
+    return [self dateStrWithFormat:format];
+}
+/// 根据 "yyyy-MM-dd HH:mm:ss" 格式的字符串，返回NSdate格式的时间
++ (NSDate *)getDate_XM:(NSString *)dateStr_XM {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    NSString *format = @"yyyy-MM-dd HH:mm:ss";
+    formatter.dateFormat = format;
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
+    NSDate *lastDate = [formatter dateFromString:dateStr_XM];
+    return lastDate;
+}
+
+/// 上次存储的时间，距离当前时间的间隔 秒: 例如：距离上次存储时间，距离现在是  20秒
++ (NSTimeInterval)fromNowTimeInterval_XM:(NSString *)lastDateStr {
+    NSDate *lastDate = [NSDate getDate_XM:lastDateStr];
+    return -[lastDate timeIntervalSinceNow];
+}
+
 /// 返回 @"yyyy-MM-dd HH:mm:ss" 类型的字符串
 - (NSString *)dateString {
     NSString *format = @"yyyy-MM-dd HH:mm:ss";
@@ -19,6 +40,7 @@
 - (NSString *)dateStrWithFormat:(NSString *)format {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = format;
+    [formatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8]];//解决8小时时间差问题
     NSString *dateString = [formatter stringFromDate:self];
     return dateString;
 }
