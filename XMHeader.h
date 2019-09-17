@@ -21,6 +21,7 @@
 #import "NSArray+XMSafe.h"              // 防止数组越界
 #import "XMTimer.h"                     // 好用的定时器管理
 #import "XMLocationTrans.h"             // 坐标系转换 --百度-火星-地球
+#import "XMNetworkNotificationManager.h"    // 网络监听
 
 // UIKit 相关
 #import <UIKit/UIKit.h>
