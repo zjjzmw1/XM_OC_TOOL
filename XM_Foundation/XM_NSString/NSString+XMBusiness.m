@@ -32,7 +32,7 @@
 
 /**
  获取新拼接的字符串 例如："a·b·c"  根据数组
-
+ 
  @param arr 字符串数组
  @param newSepa 新拼接字符串的拼接符
  @return 拼接好的字符串
@@ -50,5 +50,19 @@
     return lastStr;
 }
 
+/// 获取多少 人次 的字符串
++ (NSString *)getPeopleCountStr:(NSString *)peopleCount {
+    NSString *oldPeopleCount = [NSString stringWithFormat:@"%@",peopleCount];
+    if ([oldPeopleCount containsString:@"w"]) {
+        return [oldPeopleCount stringByReplacingOccurrencesOfString:@"w" withString:@"万"];
+    } else {
+        float peopleCount = [oldPeopleCount floatValue];
+        if (peopleCount > 10000.0) {
+            return [NSString stringWithFormat:@"%.2f万人次",peopleCount/10000.0];
+        } else {
+            return [NSString stringWithFormat:@"%.0f人次",peopleCount];
+        }
+    }
+}
 
 @end

@@ -32,6 +32,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)getNewStrWithArr:(NSArray *)arr newSeparator:(NSString *)newSepa;
 
+/// 获取多少 人次 的字符串
++ (NSString *)getPeopleCountStr:(NSString *)peopleCount;
+
 @end
 
 NS_ASSUME_NONNULL_END
