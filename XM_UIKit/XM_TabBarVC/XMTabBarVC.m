@@ -11,6 +11,8 @@
 #import "XMSizeMacro.h"                 // OC 尺寸相关宏
 #import "XMNavigationController.h"
 
+// 商城
+#import "ShopVC.h"
 /// 自定义的tabbar 按钮
 @interface XMTabBarButton : UIButton
 
@@ -29,7 +31,7 @@
 /// 数字角标直径
 #define kNumMark_W_H_XM                 20
 /// 小红点直径
-#define kPointMark_W_H_XM               12
+#define kPointMark_W_H_XM               8
 
 /// TabBarButton中 图片与文字上下所占比
 #define kTabbar_title_img_scale_XM       0.60
@@ -115,11 +117,11 @@
 }
 /// 初始化tabbar的几个页面
 - (void)initTabbarVC {
-    NSMutableArray *controllerArray = @[@"HomePageVC",@"CourseCategoryVC",@"StudyVC",@"NewMineVC"].mutableCopy;
-    NSArray * titleArray = @[NSLocalizedString(@"课程", nil),NSLocalizedString(@"分类", nil),NSLocalizedString(@"学习", nil),NSLocalizedString(@"我的", nil)];
-    NSArray *imageArray= @[@"tabbar_1",@"tabbar_2",@"tabbar_3",@"tabbar_4"];
+    NSMutableArray *controllerArray = @[@"HomePageVC",@"CourseCategoryVC",@"StudyVC",@"ShopVC",@"NewMineVC"].mutableCopy;
+    NSArray * titleArray = @[NSLocalizedString(@"课程", nil),NSLocalizedString(@"分类", nil),NSLocalizedString(@"学习", nil), NSLocalizedString(@"商城", nil),NSLocalizedString(@"我的", nil)];
+    NSArray *imageArray= @[@"tabbar_1",@"tabbar_2",@"tabbar_3",@"tabbar_3",@"tabbar_4"];
     //选中图片数组
-    NSArray *selImageArray = @[@"tabbar_1_s",@"tabbar_2_s",@"tabbar_3_s",@"tabbar_4_s"];
+    NSArray *selImageArray = @[@"tabbar_1_s",@"tabbar_2_s",@"tabbar_3_s",@"tabbar_3_s",@"tabbar_4_s"];
     //初始化(height:最小高度为49.0,当传nil 或<49.0时均按49.0处理)
     [self initWithControllerArray:controllerArray titleArray:titleArray imageArray:imageArray selImageArray:selImageArray height:kTabBarH_XM];
     [self initTabBar];
@@ -190,7 +192,7 @@
             self.seleBtn = button;
         }
         //角标
-        UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.size.width/2.0+6, 3, kNumMark_W_H_XM, kNumMark_W_H_XM)];
+        UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(button.frame.size.width/2.0 + 8, 4, kNumMark_W_H_XM, kNumMark_W_H_XM)];
         numLabel.layer.masksToBounds = YES;
         numLabel.layer.cornerRadius = 10;
         numLabel.backgroundColor = [UIColor redColor];
@@ -204,6 +206,10 @@
 }
 -(void)buttonAction:(UIButton *)button {
     NSInteger index = button.tag-1000;
+    if (index == 3) { // 商城
+        [XMRouterTool pushVC:[ShopVC new]];
+        return;
+    }
     [self showControllerIndex:index];
 }
 
