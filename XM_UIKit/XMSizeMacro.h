@@ -42,4 +42,11 @@
 /// 是否是iPad
 #define kIsIpad_XM (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 
+
+#define kIs_iOS10_XM    ([[UIDevice currentDevice].systemVersion doubleValue] >= 10.0)
+#define kIs_iOS11_XM    ([[UIDevice currentDevice].systemVersion doubleValue] >= 11.0)
+#define kIs_iOS12_XM    ([[UIDevice currentDevice].systemVersion doubleValue] >= 12.0)
+#define kIs_iOS13_XM    ([[UIDevice currentDevice].systemVersion doubleValue] >= 13.0)
+#define kIs_iOS14_XM    ([[UIDevice currentDevice].systemVersion doubleValue] >= 13.0)
+
 #endif /* XMSizeMacro_h */
