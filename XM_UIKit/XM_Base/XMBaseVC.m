@@ -36,10 +36,13 @@
     [self.xmEmptyV setHidden:YES];
     /// 自定义导航栏下面的横线 -- 把系统的隐藏，添加自己的横线，方便展示隐藏控制颜色等
     [self initNaviBottomLine];
-    /// 键盘处理
+        /// 键盘处理
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES; // 点击屏幕缩键盘
-    [IQKeyboardManager sharedManager].enableAutoToolbar = YES;          // 展示键盘上的toolbar
+    [IQKeyboardManager sharedManager].enableAutoToolbar = NO;          // 展示键盘上的toolbar
     [IQKeyboardManager sharedManager].enable = YES;
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor]; // 背景色
+    // 导航栏标题颜色
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor]}];
 }
 
 /// 默认statusBar字体颜色为黑色，某个页面想改的话，重新这个方法就OK了
