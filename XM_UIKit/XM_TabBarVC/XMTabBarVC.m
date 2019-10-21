@@ -63,6 +63,9 @@
 - (CGRect)titleRectForContentRect:(CGRect)contentRect {
     CGFloat newX = 0;
     CGFloat newY = contentRect.size.height*kTabbar_title_img_scale_XM;
+    if (kIsIpad_XM) {
+        newY = contentRect.size.height*0.50;
+    }
     CGFloat newWidth = contentRect.size.width;
     CGFloat newHeight = contentRect.size.height-contentRect.size.height*kTabbar_title_img_scale_XM;
     return CGRectMake(newX, newY, newWidth, newHeight);
