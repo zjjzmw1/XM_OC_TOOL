@@ -43,7 +43,7 @@
     if (gprs == ReachableViaWiFi) { // WiFi
         return 2;
     }
-    if (gprs == ReachableViaWWAN) { // WiFi
+    if (gprs == ReachableViaWWAN) { // 4G
         return 1;
     }
     return 0;
@@ -150,7 +150,7 @@
         now = [NSDate dateWithTimeIntervalSinceNow:-1.1]; // 第一次赋值当然是不能被拦截的。
     }
     if ([[NSDate dateWithTimeIntervalSinceNow:-0.9] compare:now] != kCFCompareGreaterThan) { // 比之前保存的时候小就拦截
-        //        NSLog(@"XMTool: 小于1秒就调用%@被拦截了",funcName);
+//        NSLog(@"XMTool: 小于1秒就调用%@被拦截了",funcName);
         return YES; // 1秒内不能重复调用这个方法
     }
     now = [NSDate date];
@@ -189,8 +189,8 @@
 /// 获取手机剩余空间大小单位是：bytes
 + (float)getMyPhoneFreeSize_XM {
     // 本方法需要头文件：
-    //    #include <sys/param.h>
-    //    #include <sys/mount.h>
+//    #include <sys/param.h>
+//    #include <sys/mount.h>
     struct statfs buf;
     float freespace = -1;
     if(statfs("/var", &buf) >= 0) {
@@ -254,6 +254,22 @@
 #pragma mark ==========================获取空间大小相关 END===================================
 
 
-
+// 清除网页缓存 WKWebsiteDataStore
++ (void)clearWKWebViewCache_XM {
+    NSSet *websiteDataTypes = [NSSet setWithArray:@[
+                                                     WKWebsiteDataTypeDiskCache,
+                                                     WKWebsiteDataTypeOfflineWebApplicationCache,
+                                                     WKWebsiteDataTypeMemoryCache,
+                                                     WKWebsiteDataTypeLocalStorage,
+                                                     WKWebsiteDataTypeCookies,
+                                                     WKWebsiteDataTypeSessionStorage,
+                                                     WKWebsiteDataTypeIndexedDBDatabases,
+                                                     WKWebsiteDataTypeWebSQLDatabases
+                                                     ]];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        // 结束回调
+    }];
+}
 
 @end

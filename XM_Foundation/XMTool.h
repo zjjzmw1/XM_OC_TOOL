@@ -62,6 +62,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)getFileSizeStringFromBytes_XM:(uint64_t)byteSize;
 #pragma mark ==========================获取空间大小相关 END===================================
 
+// 清除网页缓存 WKWebsiteDataStore
++ (void)clearWKWebViewCache_XM;
 
 @end
 

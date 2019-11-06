@@ -36,6 +36,24 @@
     }
 }
 
+/// 清除网页缓存 --- 个别情况需要清除缓存
+- (void)clearWKWebViewCache_XM {
+    NSSet *websiteDataTypes = [NSSet setWithArray:@[
+                                                     WKWebsiteDataTypeDiskCache,
+                                                     WKWebsiteDataTypeOfflineWebApplicationCache,
+                                                     WKWebsiteDataTypeMemoryCache,
+                                                     WKWebsiteDataTypeLocalStorage,
+                                                     WKWebsiteDataTypeCookies,
+                                                     WKWebsiteDataTypeSessionStorage,
+                                                     WKWebsiteDataTypeIndexedDBDatabases,
+                                                     WKWebsiteDataTypeWebSQLDatabases
+                                                     ]];
+    NSDate *dateFrom = [NSDate dateWithTimeIntervalSince1970:0];
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:websiteDataTypes modifiedSince:dateFrom completionHandler:^{
+        // 结束回调
+    }];
+}
+
 // 记得取消监听
 - (void)dealloc {
     [self.myWebView removeObserver:self forKeyPath:@"estimatedProgress"];
