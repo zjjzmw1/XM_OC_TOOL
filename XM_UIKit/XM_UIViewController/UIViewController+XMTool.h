@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 滑动返回的导航栏相关处理方法
 @interface UIViewController (XMTool)
 
+/// 获取导航栏的高度  类方法
++ (float)myNaviHeightAction;
+/// 获取导航栏的高度
+- (float)getNavigationHeightAction;
+
 /// 是否隐藏默认导航栏,默认NO - (需要在页面的 viewDidLoad 中设置隐藏或显示)
 - (void)xm_hiddenCurrenPageNavi:(BOOL)isHidden;
 

@@ -11,6 +11,24 @@
 
 @implementation UIViewController (XMTool)
 
+/// 获取导航栏的高度  类方法
++ (float)myNaviHeightAction {
+    float lastH = [XMTool getCurrentVC].navigationController.navigationBar.height;
+    if (lastH < 20) {
+        lastH = 44;
+    }
+    return lastH;
+}
+
+/// 获取导航栏的高度
+- (float)getNavigationHeightAction {
+    float lastH = self.navigationController.navigationBar.height;
+    if (lastH < 20) {
+        lastH = 44;
+    }
+    return lastH;
+}
+
 /// 是否隐藏默认导航栏,默认NO - (需要在页面的 viewDidLoad 中设置隐藏或显示)
 - (void)xm_hiddenCurrenPageNavi:(BOOL)isHidden {
     if (isHidden) {
