@@ -19,8 +19,8 @@
 
 /// 状态栏高度
 #define kStatusBarHeight_XM [[UIApplication sharedApplication] statusBarFrame].size.height
-/// 导航栏+状态栏
-#define kNaviStatusBarH_XM (kStatusBarHeight_XM + 44)
+/// 导航栏+状态栏 /// 如果是iOS12以上的iPad，导航栏就是50 + status  ，ipad的导航栏不好确定，不同iPad高度也不同
+#define kNaviStatusBarH_XM (kStatusBarHeight_XM + [UIViewController myNaviHeightAction])
 
 #define kTabBarH_XM   (kIsIPhoneXSize_XM ? 83.f : (kIsIpad_XM ? 56.f : 49.f))
 #define kView_bottom_h_XM  (kIsIPhoneXSize_XM ? 34.0 : 0)
