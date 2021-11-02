@@ -11,30 +11,44 @@
 
 @implementation UITableView (XMTool)
 
+
 /**
- 初始化表格方便的方法 -- 方便统一修改表格的属性
- 
- @param frame 大小、位置
- @return 表格
+ 便捷的初始化 UITableView的类方法
  */
-+ (UITableView *)getTableView:(CGRect)frame {
-    UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
-    tableView.separatorInset = UIEdgeInsetsZero;
-    tableView.separatorColor = [UIColor getSeparatorColor_XM];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    tableView.tableFooterView = [UIView new];
-    tableView.tableHeaderView = [UIView new];
-    // iOS11后，不加这三句，会出现，reloadData的时候页面闪动，滚动到其他地方的bug。
-    tableView.estimatedRowHeight = 0;
-    tableView.estimatedSectionHeaderHeight = 0;
-    tableView.estimatedSectionFooterHeight = 0;
-    
-    if (@available(iOS 11.0,*)) {
-        tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
++ (instancetype)instanceWithType:(UITableViewStyle)style {
+    UITableView *tableV = [[UITableView alloc] initWithFrame:CGRectZero style:style];
+    [tableV registerClass:[UITableViewCell self] forCellReuseIdentifier:@"UITableViewCell"];
+    tableV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableV.backgroundColor = [UIColor whiteColor];
+    tableV.rowHeight = UITableViewAutomaticDimension;
+    tableV.estimatedRowHeight = 0; // 个别场景：太小会跳动，太大会算不准。可以根据具体页面调整这个值。
+    tableV.estimatedSectionHeaderHeight = 0;
+    tableV.estimatedSectionFooterHeight = 0;
+    if (@available(iOS 11.0, *)) {
+        tableV.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     } else {
-        //        tableView.nextResponder.automaticallyAdjustsScrollViewInsets = NO;
+        // Fallback on earlier versions
     }
-    return tableView;
+    if (style == UITableViewStyleGrouped) {
+        tableV.sectionHeaderHeight = CGFLOAT_MIN;
+        tableV.sectionFooterHeight = CGFLOAT_MIN;
+    }
+    return tableV;
+}
+
+/**
+ section 不值顶的方法
+ */
+- (void)setSectionHeaderNotTopWithHeight:(CGFloat)sectionHeight {
+    if (self.contentOffset.y <= sectionHeight && self.contentOffset.y > 0) {
+        if (self.contentInset.top != -self.contentOffset.y) {
+            self.contentInset = UIEdgeInsetsMake(-self.contentOffset.y, 0, 0, 0);
+        }
+    } else if (self.contentOffset.y >= sectionHeight) {
+        if (self.contentInset.top != -sectionHeight) {
+            self.contentInset = UIEdgeInsetsMake(-sectionHeight, 0, 0, 0);
+        }
+    }
 }
 
 

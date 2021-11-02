@@ -13,12 +13,14 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UITableView (XMTool)
 
 /**
- 初始化表格方便的方法 -- 方便统一修改表格的属性
- 
- @param frame 大小、位置
- @return 表格
+ 便捷的初始化 UITableView的类方法
  */
-+ (UITableView *)getTableView:(CGRect)frame;
++ (instancetype)instanceWithType:(UITableViewStyle)style;
+
+/**
+ section 不值顶的方法
+ */
+- (void)setSectionHeaderNotTopWithHeight:(CGFloat)sectionHeight;
 
 @end
 
