@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6751E44C2F659D2D6483CA51 /* Pods_XMToolOC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79FB608A7B10ABC2B5499C49 /* Pods_XMToolOC.framework */; };
+		78BF4E503DB9FC94755D9B27 /* Pods_XMToolOC_XMToolOCUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DD0C73735A7D069FD4337D0 /* Pods_XMToolOC_XMToolOCUITests.framework */; };
 		E58C834C283EFA0F0061B032 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C834B283EFA0F0061B032 /* AppDelegate.m */; };
 		E58C834F283EFA0F0061B032 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C834E283EFA0F0061B032 /* SceneDelegate.m */; };
 		E58C8352283EFA0F0061B032 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C8351283EFA0F0061B032 /* ViewController.m */; };
@@ -17,6 +19,7 @@
 		E58C8367283EFA100061B032 /* XMToolOCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C8366283EFA100061B032 /* XMToolOCTests.m */; };
 		E58C8371283EFA100061B032 /* XMToolOCUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C8370283EFA100061B032 /* XMToolOCUITests.m */; };
 		E58C8373283EFA100061B032 /* XMToolOCUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E58C8372283EFA100061B032 /* XMToolOCUITestsLaunchTests.m */; };
+		EFF9E7C146EB0E5314E4D3F1 /* Pods_XMToolOCTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACB1BFA52091BB1B31EDA06 /* Pods_XMToolOCTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		093C288E2E82F08E916E1468 /* Pods-XMToolOC-XMToolOCUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMToolOC-XMToolOCUITests.release.xcconfig"; path = "Target Support Files/Pods-XMToolOC-XMToolOCUITests/Pods-XMToolOC-XMToolOCUITests.release.xcconfig"; sourceTree = "<group>"; };
+		1F155717F64FF09EB61F7C0C /* Pods-XMToolOCTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMToolOCTests.debug.xcconfig"; path = "Target Support Files/Pods-XMToolOCTests/Pods-XMToolOCTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5DD0C73735A7D069FD4337D0 /* Pods_XMToolOC_XMToolOCUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMToolOC_XMToolOCUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ACB1BFA52091BB1B31EDA06 /* Pods_XMToolOCTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMToolOCTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B971CD20C188A735343CC33 /* Pods-XMToolOC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMToolOC.debug.xcconfig"; path = "Target Support Files/Pods-XMToolOC/Pods-XMToolOC.debug.xcconfig"; sourceTree = "<group>"; };
+		79FB608A7B10ABC2B5499C49 /* Pods_XMToolOC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_XMToolOC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E77E2B482670A777E4961A4 /* Pods-XMToolOC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMToolOC.release.xcconfig"; path = "Target Support Files/Pods-XMToolOC/Pods-XMToolOC.release.xcconfig"; sourceTree = "<group>"; };
+		A7330EE654215B83A7525BD5 /* Pods-XMToolOC-XMToolOCUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMToolOC-XMToolOCUITests.debug.xcconfig"; path = "Target Support Files/Pods-XMToolOC-XMToolOCUITests/Pods-XMToolOC-XMToolOCUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E58C8347283EFA0F0061B032 /* XMToolOC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XMToolOC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58C834A283EFA0F0061B032 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E58C834B283EFA0F0061B032 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +65,7 @@
 		E58C836C283EFA100061B032 /* XMToolOCUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = XMToolOCUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E58C8370283EFA100061B032 /* XMToolOCUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMToolOCUITests.m; sourceTree = "<group>"; };
 		E58C8372283EFA100061B032 /* XMToolOCUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XMToolOCUITestsLaunchTests.m; sourceTree = "<group>"; };
+		E8444FB2121E12736C7AFFDA /* Pods-XMToolOCTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XMToolOCTests.release.xcconfig"; path = "Target Support Files/Pods-XMToolOCTests/Pods-XMToolOCTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6751E44C2F659D2D6483CA51 /* Pods_XMToolOC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFF9E7C146EB0E5314E4D3F1 /* Pods_XMToolOCTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,12 +89,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				78BF4E503DB9FC94755D9B27 /* Pods_XMToolOC_XMToolOCUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4AFFFD46BA85040C94A77281 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79FB608A7B10ABC2B5499C49 /* Pods_XMToolOC.framework */,
+				5DD0C73735A7D069FD4337D0 /* Pods_XMToolOC_XMToolOCUITests.framework */,
+				6ACB1BFA52091BB1B31EDA06 /* Pods_XMToolOCTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E58C833E283EFA0F0061B032 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +113,8 @@
 				E58C8365283EFA100061B032 /* XMToolOCTests */,
 				E58C836F283EFA100061B032 /* XMToolOCUITests */,
 				E58C8348283EFA0F0061B032 /* Products */,
+				F8395FC35E27B49536FA8092 /* Pods */,
+				4AFFFD46BA85040C94A77281 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -136,6 +163,20 @@
 			path = XMToolOCUITests;
 			sourceTree = "<group>";
 		};
+		F8395FC35E27B49536FA8092 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6B971CD20C188A735343CC33 /* Pods-XMToolOC.debug.xcconfig */,
+				7E77E2B482670A777E4961A4 /* Pods-XMToolOC.release.xcconfig */,
+				A7330EE654215B83A7525BD5 /* Pods-XMToolOC-XMToolOCUITests.debug.xcconfig */,
+				093C288E2E82F08E916E1468 /* Pods-XMToolOC-XMToolOCUITests.release.xcconfig */,
+				1F155717F64FF09EB61F7C0C /* Pods-XMToolOCTests.debug.xcconfig */,
+				E8444FB2121E12736C7AFFDA /* Pods-XMToolOCTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +184,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E58C8376283EFA100061B032 /* Build configuration list for PBXNativeTarget "XMToolOC" */;
 			buildPhases = (
+				F7D839AD0F517D1B95CE387F /* [CP] Check Pods Manifest.lock */,
 				E58C8343283EFA0F0061B032 /* Sources */,
 				E58C8344283EFA0F0061B032 /* Frameworks */,
 				E58C8345283EFA0F0061B032 /* Resources */,
@@ -160,6 +202,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E58C8379283EFA100061B032 /* Build configuration list for PBXNativeTarget "XMToolOCTests" */;
 			buildPhases = (
+				83C5450A330E001EFB894C22 /* [CP] Check Pods Manifest.lock */,
 				E58C835E283EFA100061B032 /* Sources */,
 				E58C835F283EFA100061B032 /* Frameworks */,
 				E58C8360283EFA100061B032 /* Resources */,
@@ -178,6 +221,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E58C837C283EFA100061B032 /* Build configuration list for PBXNativeTarget "XMToolOCUITests" */;
 			buildPhases = (
+				DE623FB06E7A21DB53AA07B1 /* [CP] Check Pods Manifest.lock */,
 				E58C8368283EFA100061B032 /* Sources */,
 				E58C8369283EFA100061B032 /* Frameworks */,
 				E58C836A283EFA100061B032 /* Resources */,
@@ -260,6 +304,75 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		83C5450A330E001EFB894C22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XMToolOCTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE623FB06E7A21DB53AA07B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XMToolOC-XMToolOCUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F7D839AD0F517D1B95CE387F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-XMToolOC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E58C8343283EFA0F0061B032 /* Sources */ = {
@@ -437,6 +550,7 @@
 		};
 		E58C8377283EFA100061B032 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B971CD20C188A735343CC33 /* Pods-XMToolOC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -463,6 +577,7 @@
 		};
 		E58C8378283EFA100061B032 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E77E2B482670A777E4961A4 /* Pods-XMToolOC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -489,6 +604,7 @@
 		};
 		E58C837A283EFA100061B032 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F155717F64FF09EB61F7C0C /* Pods-XMToolOCTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -506,6 +622,7 @@
 		};
 		E58C837B283EFA100061B032 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8444FB2121E12736C7AFFDA /* Pods-XMToolOCTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -523,6 +640,7 @@
 		};
 		E58C837D283EFA100061B032 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7330EE654215B83A7525BD5 /* Pods-XMToolOC-XMToolOCUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -538,6 +656,7 @@
 		};
 		E58C837E283EFA100061B032 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 093C288E2E82F08E916E1468 /* Pods-XMToolOC-XMToolOCUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
