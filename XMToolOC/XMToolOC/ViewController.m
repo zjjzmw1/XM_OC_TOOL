@@ -15,7 +15,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationItem.title = @"Home";
+    self.view.backgroundColor = [UIColor redColor];
+
 }
 
 
