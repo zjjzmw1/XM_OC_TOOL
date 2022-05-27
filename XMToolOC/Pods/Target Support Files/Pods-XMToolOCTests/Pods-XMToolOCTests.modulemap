@@ -1,6 +1,0 @@
-framework module Pods_XMToolOCTests {
-  umbrella header "Pods-XMToolOCTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
